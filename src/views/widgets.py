@@ -1,11 +1,11 @@
 import tkinter as tk
 from typing import List, Tuple, Union
 
-from src.utils.close_window import CloseWindowButton
-from src.utils.triathlon_distance_buttons import DistanceButtonsCreator
-from src.utils.entry_gaps import EntryGap
-from src.utils.entry_labels import EntryLabel
-from src.utils.menu_labels import MenuLabel
+from src.components.close_window import CloseWindowButton
+from src.components.triathlon_distance_buttons import DistanceButtonsCreator
+from src.components.entry_gaps import EntryGap
+from src.components.entry_labels import EntryLabel
+from src.components.menu_labels import MenuLabel
 
 
 class Widgets:
@@ -37,12 +37,18 @@ class Widgets:
         )
         self.menu_labels.append(
             MenuLabel(
-                self.window, text="Time", rely_value=0.33, background="PaleTurquoise2"
+                self.window,
+                text="Time",
+                rely_value=0.33,
+                background="PaleTurquoise2",
             )
         )
         self.menu_labels.append(
             MenuLabel(
-                self.window, text="Speed", rely_value=0.65, background="PaleTurquoise2"
+                self.window,
+                text="Speed",
+                rely_value=0.65,
+                background="PaleTurquoise2",
             )
         )
 
@@ -125,7 +131,10 @@ class Widgets:
             entry = item
             self.entry_gap[entry.name] = entry
 
-    def create_distance_buttons(self, distances: List[Tuple[str, Union[int, float]]]):
+    def create_distance_buttons(
+        self,
+        distances: List[Tuple[str, Union[int, float]]],
+    ):
         distance_buttons_creator = DistanceButtonsCreator(
             self.window, self.selected_distance, self.entry_gap
         )
@@ -139,5 +148,7 @@ class Widgets:
 
     def _close_window_button(self):
         CloseWindowButton(
-            self.window, button_text="Close", root=self.window.winfo_toplevel()
+            self.window,
+            button_text="Close",
+            root=self.window.winfo_toplevel(),
         )

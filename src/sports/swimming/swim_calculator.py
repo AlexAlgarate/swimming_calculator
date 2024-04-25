@@ -1,11 +1,12 @@
 import tkinter as tk
 from tkinter import messagebox
+from typing import List, Tuple
 
-from src.utils.widgets import Widgets
+from src.views.widgets import Widgets
 
 
 class SwimCalculator(tk.Tk):
-    DISTANCES = [
+    DISTANCES: List[Tuple[str, int]] = [
         ("Sprint", 750),
         ("Olympic", 1500),
         ("Half Ironman", 1900),
@@ -39,14 +40,15 @@ class SwimCalculator(tk.Tk):
                 seconds_left = int(pace_seconds % 60)
                 self.result = f"0{minutes:01d}:{seconds_left:02d} min/100mts"
 
-                self.result_entry = self.widget.create_result_gap(result_gap=self.result)
+                self.result_entry = self.widget.create_result_gap(
+                    result_gap=self.result
+                )
                 self.result_entry.delete(0, "end")
                 self.result_entry.insert(0, self.result)
 
                 if not distance_gap:
                     messagebox.showerror(
-                        title="Error",
-                        message="Distance value is required."
+                        title="Error", message="Distance value is required."
                     )
 
             except ValueError:

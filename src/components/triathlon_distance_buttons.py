@@ -4,7 +4,10 @@ from typing import Dict, List, Tuple
 
 class DistanceButtonsCreator:
     def __init__(
-        self, window: tk.Tk, selected_distance: tk.StringVar, entry_gap: Dict[str, str]
+        self,
+        window: tk.Tk,
+        selected_distance: tk.StringVar,
+        entry_gap: Dict[str, str],
     ):
         self.window = window
         self.selected_distance = selected_distance
@@ -12,8 +15,13 @@ class DistanceButtonsCreator:
         self.distance_frame = tk.Frame(self.window)
 
     def create_distance_buttons(self, distances: List[Tuple[str, str]]):
-        self.distance_frame.place(relx=0.15, rely=0.04, relwidth=0.6, relheight=0.06)
-        for i, (button_text, distance_value) in enumerate(distances):
+        self.distance_frame.place(
+            relx=0.15,
+            rely=0.04,
+            relwidth=0.6,
+            relheight=0.06,
+        )
+        for _, (button_text, distance_value) in enumerate(distances):
             button = tk.Radiobutton(
                 self.distance_frame,
                 text=button_text,

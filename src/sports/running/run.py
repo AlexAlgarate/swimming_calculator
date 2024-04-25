@@ -9,7 +9,8 @@ class RunCalculator:
 
         Args:
             window (tk.Tk): The main window of the application.
-            geometry (str): The initial size of the window (default is "400x300").
+            geometry (str): The initial size of
+            the window (default is "400x300").
         """
         self.window = window
         self.window.title("Triathlon Calculator")
@@ -28,12 +29,22 @@ class RunCalculator:
         labels = [("Distance", 0.11), ("Time", 0.24), ("Speed", 0.42)]
 
         for label_text, rely_value in labels:
-            label = tk.Label(self.window, text=label_text, bg="PaleTurquoise2")
-            label.place(relx=0.05, rely=rely_value, relwidth=0.23, relheight=0.1)
+            label = tk.Label(
+                self.window,
+                text=label_text,
+                bg="PaleTurquoise2",
+            )
+            label.place(
+                relx=0.05,
+                rely=rely_value,
+                relwidth=0.23,
+                relheight=0.1,
+            )
 
     def _create_label_entry_fields(self):
         """
-        Creates the label entry fields (meters, h, min, secs) in the GUI window.
+        Creates the label entry fields (meters, h, min, secs)
+        in the GUI window.
         """
         labels = [
             ("km", 0.6, 0.11, 0.13),
@@ -45,7 +56,10 @@ class RunCalculator:
         for label_text, relx_value, rely_value, relwidht_value in labels:
             label = tk.Label(self.window, text=label_text)
             label.place(
-                relx=relx_value, rely=rely_value, relwidth=relwidht_value, relheight=0.1
+                relx=relx_value,
+                rely=rely_value,
+                relwidth=relwidht_value,
+                relheight=0.1,
             )
 
     def _create_entry_fields(self):
@@ -63,7 +77,10 @@ class RunCalculator:
         for name, relx_value, rely_value, relwidt_value in entries:
             entry = tk.Entry(self.window, bg="khaki1")
             entry.place(
-                relx=relx_value, rely=rely_value, relwidth=relwidt_value, relheight=0.1
+                relx=relx_value,
+                rely=rely_value,
+                relwidth=relwidt_value,
+                relheight=0.1,
             )
             self.entry_fields[name] = entry
 
@@ -72,12 +89,24 @@ class RunCalculator:
         Creates the result field and calculate button in the GUI window.
         """
         self.calculator = tk.Button(
-            self.window, text="Calculate", command=self._swim_pace
+            self.window,
+            text="Calculate",
+            command=self._swim_pace,
         )
-        self.calculator.place(relx=0.7, rely=0.6, relwidth=0.20, relheight=0.1)
+        self.calculator.place(
+            relx=0.7,
+            rely=0.6,
+            relwidth=0.20,
+            relheight=0.1,
+        )
 
         self.speed_result = tk.Entry(self.window, bg="khaki1")
-        self.speed_result.place(relx=0.35, rely=0.42, relwidth=0.35, relheight=0.1)
+        self.speed_result.place(
+            relx=0.35,
+            rely=0.42,
+            relwidth=0.35,
+            relheight=0.1,
+        )
 
     def _create_distance_buttons(self):
         distances = [
@@ -90,7 +119,12 @@ class RunCalculator:
         self.selected_distance = tk.StringVar(value=" ")
 
         distance_frame = tk.Frame(self.window)
-        distance_frame.place(relx=0.15, rely=0.04, relwidth=0.6, relheight=0.06)
+        distance_frame.place(
+            relx=0.15,
+            rely=0.04,
+            relwidth=0.6,
+            relheight=0.06,
+        )
         for i, (button_text, distance_value) in enumerate(distances):
             button = tk.Radiobutton(
                 distance_frame,
@@ -108,7 +142,8 @@ class RunCalculator:
 
     def _swim_pace(self):
         """
-        Calculates the swim pace based on the user input and displays the result.
+        Calculates the swim pace based on the user input
+        and displays the result.
 
         This method is called when the "Calculate" button is clicked.
         """
@@ -119,7 +154,10 @@ class RunCalculator:
             seconds_field = float(self.entry_fields["seconds"].get() or 0)
 
         except ValueError:
-            messagebox.showerror("Error", "Invalid input. Please enter numbers only.")
+            messagebox.showerror(
+                "Error",
+                "Invalid input. Please enter numbers only.",
+            )
             return
 
         total_seconds = (hour_field * 3600) + (minute_field * 60) + seconds_field
@@ -129,7 +167,8 @@ class RunCalculator:
         result = f"0{minutes:01d}:{seconds_left:02d} min/100mts"
         # Clear the current content of the speed entry field
         self.speed_result.delete(0, "end")
-        # Insert the calculated result at the beginning of the speed entry field
+        # Insert the calculated result at the beginning
+        # of the speed entry field
         str(self.speed_result.insert(0, result))
 
 
