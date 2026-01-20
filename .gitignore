@@ -7,7 +7,7 @@ pyproject.toml
 setup.cfg
 multiples_windows.py
 src/utils_swim
-
+uv.lock
 
 # C extensions
 *.so

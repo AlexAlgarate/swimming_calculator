@@ -4,8 +4,7 @@ on:
     branches:
       - main
   pull_request:
-    branches:
-      -main
+    branches: -main
 
 jobs:
   test:
@@ -23,15 +22,15 @@ jobs:
 
       - name: install dependencies
         run: |
-         sudo apt-get update
-         sudo apt-get install xvfb
-         pip install -r requirements.txt
+          sudo apt-get update
+          sudo apt-get install xvfb
+          pip install -r requirements.txt
 
       - name: format code
         run: black .
 
       - name: lint code
-        run: ruff . --ignore E402
+        run: ruff check --ignore E402
 
       - name: run tests
         run: xvfb-run -a python tests/test_swimming.py
