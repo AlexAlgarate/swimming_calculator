@@ -7,19 +7,18 @@ describe('UnifiedCalculator', () => {
   it('renders all sections', () => {
     render(<UnifiedCalculator />)
     expect(screen.getByText('Distancias predefinidas')).toBeInTheDocument()
-    expect(screen.getByText('Tiempo (HH:MM:SS)')).toBeInTheDocument()
-    expect(screen.getByText('Natación (metros)')).toBeInTheDocument()
-    expect(screen.getByText('Ciclismo (km)')).toBeInTheDocument()
-    expect(screen.getByText('Carrera (km)')).toBeInTheDocument()
+    expect(screen.getByText('Natación')).toBeInTheDocument()
+    expect(screen.getByText('Ciclismo')).toBeInTheDocument()
+    expect(screen.getByText('Carrera')).toBeInTheDocument()
   })
 
   it('has no preset selected by default and empty distances', () => {
     render(<UnifiedCalculator />)
 
     const inputs = screen.getAllByRole('textbox')
-    expect(inputs[3]).toHaveValue('')
+    expect(inputs[0]).toHaveValue('')
     expect(inputs[4]).toHaveValue('')
-    expect(inputs[5]).toHaveValue('')
+    expect(inputs[8]).toHaveValue('')
   })
 
   it('updates all distances when a preset is clicked', async () => {
@@ -27,9 +26,9 @@ describe('UnifiedCalculator', () => {
     await userEvent.click(screen.getByText('Sprint'))
 
     const inputs = screen.getAllByRole('textbox')
-    expect(inputs[3]).toHaveValue('750')
+    expect(inputs[0]).toHaveValue('750')
     expect(inputs[4]).toHaveValue('20')
-    expect(inputs[5]).toHaveValue('5')
+    expect(inputs[8]).toHaveValue('5')
 
     const sprintBtn = screen.getByText('Sprint').closest('button')
     expect(sprintBtn).toHaveClass('bg-blue-600')
@@ -40,8 +39,8 @@ describe('UnifiedCalculator', () => {
     await userEvent.click(screen.getByText('Sprint'))
 
     const inputs = screen.getAllByRole('textbox')
-    await userEvent.clear(inputs[3])
-    await userEvent.type(inputs[3], '2000')
+    await userEvent.clear(inputs[0])
+    await userEvent.type(inputs[0], '2000')
 
     const sprintBtn = screen.getByText('Sprint').closest('button')
     expect(sprintBtn).not.toHaveClass('bg-blue-600')
@@ -62,11 +61,15 @@ describe('UnifiedCalculator', () => {
     render(<UnifiedCalculator />)
 
     const inputs = screen.getAllByRole('textbox')
-    await userEvent.type(inputs[3], '1500')
+    await userEvent.type(inputs[0], '1500')
+    await userEvent.type(inputs[1], '1')
+    await userEvent.type(inputs[2], '15')
     await userEvent.type(inputs[4], '40')
-    await userEvent.type(inputs[5], '10')
-    await userEvent.type(inputs[0], '1')
-    await userEvent.type(inputs[1], '15')
+    await userEvent.type(inputs[5], '1')
+    await userEvent.type(inputs[6], '15')
+    await userEvent.type(inputs[8], '10')
+    await userEvent.type(inputs[9], '1')
+    await userEvent.type(inputs[10], '15')
 
     await userEvent.click(screen.getByText('Calcular'))
 
@@ -79,9 +82,9 @@ describe('UnifiedCalculator', () => {
     render(<UnifiedCalculator />)
 
     const inputs = screen.getAllByRole('textbox')
-    await userEvent.type(inputs[3], '1500')
-    await userEvent.type(inputs[1], '20')
-    await userEvent.type(inputs[2], '30')
+    await userEvent.type(inputs[0], '1500')
+    await userEvent.type(inputs[2], '20')
+    await userEvent.type(inputs[3], '30')
 
     await userEvent.click(screen.getByText('Calcular'))
 
@@ -93,7 +96,7 @@ describe('UnifiedCalculator', () => {
 
     const inputs = screen.getAllByRole('textbox')
     await userEvent.type(inputs[4], '40')
-    await userEvent.type(inputs[0], '1')
+    await userEvent.type(inputs[5], '1')
 
     await userEvent.click(screen.getByText('Calcular'))
 
@@ -104,8 +107,8 @@ describe('UnifiedCalculator', () => {
     render(<UnifiedCalculator />)
 
     const inputs = screen.getAllByRole('textbox')
-    await userEvent.type(inputs[5], '10')
-    await userEvent.type(inputs[1], '50')
+    await userEvent.type(inputs[8], '10')
+    await userEvent.type(inputs[10], '50')
 
     await userEvent.click(screen.getByText('Calcular'))
 
