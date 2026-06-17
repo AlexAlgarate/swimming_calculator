@@ -26,7 +26,7 @@ describe('SportCalculator', () => {
     render(<SportCalculator {...defaultProps} />)
     expect(screen.getByText('Swim Pace Calculator')).toBeInTheDocument()
     expect(screen.getByText('Distance (meters)')).toBeInTheDocument()
-    expect(screen.getByText('Time (HH:MM:SS)')).toBeInTheDocument()
+    expect(screen.getByText('Tiempo (HH:MM:SS)')).toBeInTheDocument()
 
     expect(screen.getByText('Sprint')).toBeInTheDocument()
     expect(screen.getByText('Olympic')).toBeInTheDocument()
@@ -39,7 +39,7 @@ describe('SportCalculator', () => {
     mockCalculate.mockReturnValue('01:30 min/100mts')
     render(<SportCalculator {...defaultProps} />)
 
-    const distInput = screen.getByPlaceholderText('e.g. 1500')
+    const distInput = screen.getByPlaceholderText('ej. 1500')
     await userEvent.type(distInput, '1000')
 
     expect(mockCalculate).toHaveBeenCalled()
@@ -50,7 +50,7 @@ describe('SportCalculator', () => {
     render(<SportCalculator {...defaultProps} />)
 
     await userEvent.click(screen.getByText('Olympic'))
-    const distInput = screen.getByPlaceholderText('e.g. 1500')
+    const distInput = screen.getByPlaceholderText('ej. 1500')
     expect(distInput).toHaveValue('1500')
   })
 
@@ -58,7 +58,7 @@ describe('SportCalculator', () => {
     mockCalculate.mockReturnValue('01:30 min/100mts')
     render(<SportCalculator {...defaultProps} />)
 
-    const distInput = screen.getByPlaceholderText('e.g. 1500')
+    const distInput = screen.getByPlaceholderText('ej. 1500')
     await userEvent.type(distInput, '1000')
 
     const allInputs = screen.getAllByRole('textbox')
@@ -75,7 +75,7 @@ describe('SportCalculator', () => {
     const olympicButton = screen.getByText('Olympic').closest('button')
     expect(olympicButton).toHaveClass('bg-blue-600')
 
-    const distInput = screen.getByPlaceholderText('e.g. 1500')
+    const distInput = screen.getByPlaceholderText('ej. 1500')
     await userEvent.clear(distInput)
     await userEvent.type(distInput, '2000')
 

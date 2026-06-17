@@ -45,21 +45,21 @@ export const runningPace = (distance: number, time: TimeInput): string | null =>
 
 export const SWIM_DISTANCES = [
   { label: 'Sprint', value: 750 },
-  { label: 'Olympic', value: 1500 },
-  { label: 'Half Ironman', value: 1900 },
+  { label: 'Olímpica', value: 1500 },
+  { label: 'Medio Ironman', value: 1900 },
   { label: 'Ironman', value: 3800 },
 ] as const
 
 export const CYCLING_DISTANCES = [
   { label: 'Sprint', value: 20 },
-  { label: 'Olympic', value: 40 },
-  { label: 'Half Ironman', value: 90 },
+  { label: 'Olímpica', value: 40 },
+  { label: 'Medio Ironman', value: 90 },
   { label: 'Ironman', value: 180 },
 ] as const
 
 export const RUNNING_DISTANCES = [
   { label: 'Sprint', value: 5 },
-  { label: 'Olympic', value: 10 },
-  { label: 'Half Ironman', value: 21.097 },
+  { label: 'Olímpica', value: 10 },
+  { label: 'Medio Ironman', value: 21.097 },
   { label: 'Ironman', value: 42.195 },
 ] as const

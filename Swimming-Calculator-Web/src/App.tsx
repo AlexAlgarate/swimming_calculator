@@ -1,9 +1,16 @@
-import UnifiedCalculator from './components/UnifiedCalculator'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Landing from './pages/Landing'
+import TriathlonPage from './pages/TriathlonPage'
+import RunningPage from './pages/RunningPage'
 
 const App = () => (
-  <div className="min-h-screen bg-gray-950 py-8 px-4">
-    <UnifiedCalculator />
-  </div>
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Landing />} />
+      <Route path="/triathlon" element={<TriathlonPage />} />
+      <Route path="/running" element={<RunningPage />} />
+    </Routes>
+  </BrowserRouter>
 )
 
 export default App

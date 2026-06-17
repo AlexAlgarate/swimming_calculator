@@ -19,18 +19,18 @@ interface SportConfig {
 }
 
 const SPORTS: SportConfig[] = [
-  { key: 'swim', label: 'Swim', unit: 'meters', calculate: swimPace },
-  { key: 'cycling', label: 'Cycling', unit: 'km', calculate: cyclingSpeed },
-  { key: 'running', label: 'Running', unit: 'km', calculate: runningPace },
+  { key: 'swim', label: 'Natación', unit: 'metros', calculate: swimPace },
+  { key: 'cycling', label: 'Ciclismo', unit: 'km', calculate: cyclingSpeed },
+  { key: 'running', label: 'Carrera', unit: 'km', calculate: runningPace },
 ]
 
 const UnifiedCalculator = () => {
   const [distances, setDistances] = useState<Record<string, string>>({
-    swim: '1500',
-    cycling: '40',
-    running: '10',
+    swim: '',
+    cycling: '',
+    running: '',
   })
-  const [selectedPreset, setSelectedPreset] = useState<string | null>('Olympic')
+  const [selectedPreset, setSelectedPreset] = useState<string | null>(null)
   const [time, setTime] = useState<TimeInput>({ hours: '', minutes: '', seconds: '' })
   const [results, setResults] = useState<Record<string, string | null>>({
     swim: null,
@@ -48,7 +48,7 @@ const UnifiedCalculator = () => {
       },
     },
     {
-      label: 'Olympic',
+      label: 'Olímpica',
       values: {
         swim: String(SWIM_DISTANCES[1].value),
         cycling: String(CYCLING_DISTANCES[1].value),
@@ -56,7 +56,7 @@ const UnifiedCalculator = () => {
       },
     },
     {
-      label: 'Half Ironman',
+      label: 'Medio Ironman',
       values: {
         swim: String(SWIM_DISTANCES[2].value),
         cycling: String(CYCLING_DISTANCES[2].value),
@@ -98,10 +98,10 @@ const UnifiedCalculator = () => {
 
   return (
     <div className="max-w-2xl mx-auto bg-gray-800 rounded-2xl shadow-lg p-8 space-y-8">
-      <h2 className="text-xl font-bold text-gray-100 text-center">Triathlon Calculator</h2>
+      <h2 className="text-xl font-bold text-gray-100 text-center">Calculadora de Triatlón</h2>
 
       <div className="space-y-3">
-        <p className="text-sm font-medium text-gray-400 text-center">Distance Presets</p>
+        <p className="text-sm font-medium text-gray-400 text-center">Distancias predefinidas</p>
         <div className="flex flex-wrap gap-2 justify-center">
           {presets.map((p) => (
             <button
@@ -121,7 +121,7 @@ const UnifiedCalculator = () => {
       </div>
 
       <div className="space-y-3">
-        <p className="text-sm font-medium text-gray-400 text-center">Time (HH:MM:SS)</p>
+        <p className="text-sm font-medium text-gray-400 text-center">Tiempo (HH:MM:SS)</p>
         <div className="flex justify-center gap-4">
           <InputField
             label="h"
@@ -134,7 +134,7 @@ const UnifiedCalculator = () => {
             onChange={(v) => setTime((t) => ({ ...t, minutes: v }))}
           />
           <InputField
-            label="secs"
+            label="seg"
             value={time.seconds}
             onChange={(v) => setTime((t) => ({ ...t, seconds: v }))}
           />
@@ -147,7 +147,7 @@ const UnifiedCalculator = () => {
           className="px-8 py-3 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-xl
                      shadow-md transition-colors text-lg"
         >
-          Calculate
+          Calcular
         </button>
       </div>
 
@@ -162,16 +162,16 @@ const UnifiedCalculator = () => {
                 label={sport.unit}
                 value={distances[sport.key]}
                 onChange={(v) => updateDistance(sport.key, v)}
-                placeholder="e.g. 1500"
+                placeholder="ej. 1500"
               />
             </div>
             <ResultDisplay
               label={
                 sport.key === 'swim'
-                  ? 'Swim Pace'
+                  ? 'Ritmo natación'
                   : sport.key === 'cycling'
-                    ? 'Speed'
-                    : 'Running Pace'
+                    ? 'Velocidad'
+                    : 'Ritmo carrera'
               }
               value={results[sport.key]}
             />

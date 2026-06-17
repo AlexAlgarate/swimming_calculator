@@ -58,7 +58,7 @@ const SportCalculator = ({
                 setDistance(v)
                 setSelectedPreset(null)
               }}
-              placeholder="e.g. 1500"
+              placeholder="ej. 1500"
             />
           </div>
           <DistanceButtons
@@ -70,7 +70,7 @@ const SportCalculator = ({
 
         <div className="space-y-3">
           <p className="text-sm font-medium text-gray-600 dark:text-gray-400 text-center">
-            Time (HH:MM:SS)
+            Tiempo (HH:MM:SS)
           </p>
           <div className="flex justify-center gap-4">
             <InputField
